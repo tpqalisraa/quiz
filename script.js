@@ -78,7 +78,6 @@ function loadQuestion() {
 function checkAnswer(i, el) {
   const q = filteredQuestions[current];
 
-  // Nonaktifkan klik semua opsi setelah dipilih
   document.querySelectorAll(".option").forEach((opt) => {
     opt.style.pointerEvents = "none";
   });
@@ -92,23 +91,14 @@ function checkAnswer(i, el) {
       if (current < 15 && current < filteredQuestions.length) {
         loadQuestion();
       } else {
-        alert("🎉 Selamat Anda Menang 1 M!");
-        location.reload();
+        showWinPopup();
       }
     }, 1000);
+
   } else {
     document.getElementById("wrongSound").play();
     el.classList.add("wrong");
 
-
-    function showWinPopup() {
-      document.getElementById("winPopup").style.display = "flex";
-    }
-
-    function restartGame() {
-      location.reload();
-    }
-    // Tampilkan juga jawaban yang benar
     document.querySelectorAll(".option")[q.correct].classList.add("correct");
 
     setTimeout(() => {
@@ -116,7 +106,6 @@ function checkAnswer(i, el) {
     }, 1500);
   }
 }
-
 function renderLadder() {
   const ladder = document.getElementById("ladder");
   ladder.innerHTML = "";
@@ -246,4 +235,12 @@ function showCorrectPopup() {
   setTimeout(() => {
     popup.style.display = "none";
   }, 1500); // tampil 1.5 detik
+}
+
+function showWinPopup() {
+  document.getElementById("winPopup").style.display = "flex";
+}
+
+function restartGame() {
+  location.reload();
 }
