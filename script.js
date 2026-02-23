@@ -1,7 +1,7 @@
 let used5050 = false;
 let usedFriend = false;
 let usedAudience = false;
-
+let moneyInterval;
 let filteredQuestions = [];
 let current = 0;
 
@@ -239,6 +239,45 @@ function showCorrectPopup() {
 
 function showWinPopup() {
   document.getElementById("winPopup").style.display = "flex";
+}
+function showWinPopup() {
+  const popup = document.getElementById("winPopup");
+  popup.style.display = "flex";
+
+  startMoneyRain();
+}
+
+function startMoneyRain() {
+  const container = document.querySelector(".money-rain");
+
+  for (let i = 0; i < 40; i++) {
+    createMoney(container);
+  }
+
+  // terus tambah uang setiap 500ms
+  moneyInterval = setInterval(() => {
+    createMoney(container);
+  }, 500);
+}
+
+function createMoney(container) {
+  const money = document.createElement("div");
+  money.classList.add("money");
+  money.innerText = "💸";
+
+  money.style.left = Math.random() * 100 + "vw";
+  money.style.animationDuration = 3 + Math.random() * 2 + "s";
+
+  container.appendChild(money);
+
+  setTimeout(() => {
+    money.remove();
+  }, 5000);
+}
+
+function restartGame() {
+  clearInterval(moneyInterval);
+  location.reload();
 }
 
 function restartGame() {

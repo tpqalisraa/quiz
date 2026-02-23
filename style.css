@@ -295,3 +295,23 @@ body {
   }
 }
 
+.money-rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.money {
+  position: absolute;
+  top: -50px;
+  font-size: 100px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
